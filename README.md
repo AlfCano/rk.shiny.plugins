@@ -43,5 +43,11 @@ Follow these steps to generate, compile, and install the complete plugin package
 Ensure you have R, RKWard, and the necessary R packages installed. You can install all required R packages by running this command in your R console:
 
 ```{r}
-install.packages(c("rkwarddev", "devtools", "rpivotTable", "ggplotgui", "ggquickeda"))
+install.packages(c( "devtools", "rpivotTable", "ggplotgui", "ggquickeda"))
+```
+
+### Generator
+To run the generator `rkwarddev` package is needed.
+```{r}
+install.packages("rkwarddev")
 ```
