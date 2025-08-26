@@ -1,5 +1,5 @@
 # rk.shiny.plugins
-# RKWard Shiny Plugins Package Generator
+## RKWard Shiny Plugins Package and Generator
 
 ## Synopsis
 
