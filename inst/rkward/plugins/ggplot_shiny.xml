@@ -18,13 +18,13 @@
 			<connect governor="!edit!.state" client="!edit!.enabled" />
 		-->
 	</logic>
-	<dialog label="Constructor Interactivo de Gráficos (ggplot)">
-		<row id="row_clmndcOOSS">
+	<dialog label="Interactive Plot Builder (ggplot)">
+		<row id="row_clmndcOODD">
 			<column id="clm_vrslctrddO">
-				<varselector id="dataframe_source" label="Objetos en el entorno de trabajo" />
+				<varselector id="dataframe_source" label="Objects in workspace" />
 			</column>
-			<column id="clm_vrsltddtsS">
-				<varslot id="data_slot" label="Set de datos (arrastre aquí)" source="dataframe_source" />
+			<column id="clm_vrsltddtsD">
+				<varslot id="data_slot" label="Dataset (drag here)" source="dataframe_source" />
 			</column>
 		</row>
 	</dialog>

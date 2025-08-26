@@ -1,14 +1,13 @@
 Package: rk.shiny.plugins
 Type: Package
-Title: Un paquete de plugins de RKWard para lanzar interfaces
-        interactivas de Shiny.
-Version: 1.0.0
+Title: An RKWard plugin package to launch interactive Shiny interfaces.
+Version: 1.0.1
 Date: 2025-08-26
 Author: Alfonso Cano
 Maintainer: Alfonso Cano <alfonso.cano@correo.buap.mx>
 Enhances: rkward
-Description: Un paquete de plugins de RKWard para lanzar interfaces
-        interactivas de Shiny.
+Description: An RKWard plugin package to launch interactive Shiny
+        interfaces.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyLoad: yes

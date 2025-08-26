@@ -22,7 +22,7 @@ function calculate(is_preview){
 function printout(is_preview){
 	// printout the results
 
-    echo('rk.header(\"Lanzando Interfaz de ggquickeda\")\n');
+    echo('rk.header(\"Launching ggquickeda Interface\")\n');
     echo('print(result)\n');
   
 

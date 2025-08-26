@@ -25,8 +25,9 @@ function printout(is_preview){
     var object_name = getValue("save_pivot.objectname");
     var workplace = getValue("save_pivot.parent");
     var full_object_name = workplace + '$' + object_name;
-    echo('rk.header(\"Tabla Dinámica Interactiva\")\n');
+    echo('rk.header(\"Interactive Pivot Table\")\n');
     echo('print(result)\n');
+    echo(full_object_name + ' <- result\n');
   
 	//// save result object
 	// read in saveobject variables
@@ -35,7 +36,7 @@ function printout(is_preview){
 	var savePivotParent = getValue("save_pivot.parent");
 	// assign object to chosen environment
 	if(savePivotActive) {
-		echo(".GlobalEnv$" + savePivot + " <- result\n");
+		echo(".GlobalEnv$" + savePivot + " <- my.pivot\n");
 	}
 
 }

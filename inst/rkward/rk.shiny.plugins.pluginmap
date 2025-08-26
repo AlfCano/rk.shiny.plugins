@@ -18,9 +18,9 @@
 	-->
 	<about
 		name="rk.shiny.plugins"
-		shortinfo="Un paquete de plugins de RKWard para lanzar interfaces interactivas de Shiny."
-		longinfo="Un paquete de plugins de RKWard para lanzar interfaces interactivas de Shiny."
-		version="1.0.0"
+		shortinfo="An RKWard plugin package to launch interactive Shiny interfaces."
+		longinfo="An RKWard plugin package to launch interactive Shiny interfaces."
+		version="1.0.1"
 		releasedate="2025-08-26"
 		url="https://github.com/AlfCano/rk.survey.design"
 		license="GPL (&gt;= 3)"
@@ -39,13 +39,6 @@
 		map="rkward::embedded"
 	/>
 	<components>
-		<component
-			id="cmp_rkshinypluginsrpivotTable"
-			label="rpivotTable"
-			type="standard"
-			file="plugins/rpivotTable.xml"
-		>
-		</component>
 		<component
 			id="cmp_rkshinypluginsggplotshiny"
 			label="ggplot_shiny"
@@ -74,19 +67,6 @@
 			label="Shiny"
 		>
 			<menu
-				id="men_rpivotTabl"
-				label="rpivotTable"
-			>
-				<entry
-					component="cmp_rkshinypluginsrpivotTable"
-				/>
-			</menu>
-		</menu>
-		<menu
-			id="men_Shiny"
-			label="Shiny"
-		>
-			<menu
 				id="men_ggplotGUI"
 				label="ggplot GUI"
 			>
@@ -109,12 +89,17 @@
 			</menu>
 		</menu>
 		<menu
-			id="men_test"
-			label="test"
+			id="men_Shiny"
+			label="Shiny"
 		>
-			<entry
-				component="cmp_rkshinypluginsrkshnyplgns"
-			/>
+			<menu
+				id="men_rpivotTabl"
+				label="rpivotTable"
+			>
+				<entry
+					component="cmp_rkshinypluginsrkshnyplgns"
+				/>
+			</menu>
 		</menu>
 	</hierarchy>
 	<!--

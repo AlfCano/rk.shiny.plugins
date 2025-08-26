@@ -18,22 +18,22 @@
 			<connect governor="!edit!.state" client="!edit!.enabled" />
 		-->
 	</logic>
-	<dialog label="Tabla Dinámica Interactiva (rpivotTable)">
+	<dialog label="Interactive Pivot Table (rpivotTable)">
 		<tabbook>
-			<tab label="Configuración" id="tab_Confgrcn">
-				<row id="row_clmndcOOSS">
+			<tab label="Configuration" id="tab_Confgrtn">
+				<row id="row_clmndcOODD">
 					<column id="clm_vrslctrddO">
-						<varselector id="dataframe_source" label="Objetos en el entorno de trabajo" />
+						<varselector id="dataframe_source" label="Objects in workspace" />
 					</column>
-					<column id="clm_vrsltddtsS">
-						<varslot id="data_slot" label="Set de datos (arrastre aquí)" source="dataframe_source" />
+					<column id="clm_vrsltddtsD">
+						<varslot id="data_slot" label="Dataset (drag here)" source="dataframe_source" />
 					</column>
 				</row>
 			</tab>
-			<tab label="Opciones de Salida" id="tab_OpcnsdSl">
-				<row id="row_clmndclmGG">
-					<column id="clm_svbjctlblG">
-						<saveobject label="Guardar tabla dinámica en" checkable="true" initial="result" id="save_pivot" />
+			<tab label="Output Options" id="tab_OtptOptn">
+				<row id="row_clmndclmSS">
+					<column id="clm_svbjctlblS">
+						<saveobject label="Save pivot table to" checkable="true" initial="my.pivot" id="save_pivot" />
 					</column>
 				</row>
 			</tab>

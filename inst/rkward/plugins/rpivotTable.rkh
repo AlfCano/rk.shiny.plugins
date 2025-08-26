@@ -17,10 +17,10 @@
 		</section>
 	-->
 	<settings>
-		<caption id="tab_Confgrcn" />
+		<caption id="tab_Confgrtn" />
 		<setting id="data_slot">
 		</setting>
-		<caption id="tab_OpcnsdSl" />
+		<caption id="tab_OtptOptn" />
 		<setting id="save_pivot">
 		</setting>
 	</settings>

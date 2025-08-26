@@ -22,7 +22,7 @@ function calculate(is_preview){
 function printout(is_preview){
 	// printout the results
 
-    echo('rk.header(\"Lanzando Interfaz de ggplot\")\n');
+    echo('rk.header(\"Launching ggplot Interface\")\n');
     echo('print(result)\n');
   
 
