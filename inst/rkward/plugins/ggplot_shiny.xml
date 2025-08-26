@@ -1,0 +1,31 @@
+<!DOCTYPE rkplugin >
+<document>
+	<!--
+		this code was generated using the rkwarddev package.
+	perhaps don't make changes here, but in the rkwarddev script instead!
+	-->
+	<code file="ggplot_shiny.js" />
+	<help file="ggplot_shiny.rkh" />
+	<!--
+		<dependencies>
+		</dependencies>
+	-->
+	<logic>
+		<!--
+			<convert id="!edit!" sources="!edit!" mode="equals" standard="!edit!" />
+		-->
+		<!--
+			<connect governor="!edit!.state" client="!edit!.enabled" />
+		-->
+	</logic>
+	<dialog label="Constructor Interactivo de Gráficos (ggplot)">
+		<row id="row_clmndcOOSS">
+			<column id="clm_vrslctrddO">
+				<varselector id="dataframe_source" label="Objetos en el entorno de trabajo" />
+			</column>
+			<column id="clm_vrsltddtsS">
+				<varslot id="data_slot" label="Set de datos (arrastre aquí)" source="dataframe_source" />
+			</column>
+		</row>
+	</dialog>
+</document>

@@ -1,0 +1,17 @@
+Package: rk.shiny.plugins
+Type: Package
+Title: Un paquete de plugins de RKWard para lanzar interfaces
+        interactivas de Shiny.
+Version: 1.0.0
+Date: 2025-08-26
+Author: Alfonso Cano
+Maintainer: Alfonso Cano <alfonso.cano@correo.buap.mx>
+Enhances: rkward
+Description: Un paquete de plugins de RKWard para lanzar interfaces
+        interactivas de Shiny.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyLoad: yes
+URL: https://github.com/AlfCano/rk.survey.design
+Authors@R: person(given="Alfonso", family="Cano",
+        email="alfonso.cano@correo.buap.mx", role=c("aut", "cre"))

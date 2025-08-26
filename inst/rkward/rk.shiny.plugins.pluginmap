@@ -1,0 +1,132 @@
+<!DOCTYPE
+	rkpluginmap
+>
+<document
+	base_prefix=""
+	namespace="rkshinyplugins"
+	id="rkshinyplugins_rkward"
+	po_id="rkshinyplugins_rkward"
+	priority="medium"
+>
+	<!--
+		this code was generated using the rkwarddev package.
+	perhaps don't make changes here, but in the rkwarddev script instead!
+	-->
+	<!--
+		<dependencies>
+		</dependencies>
+	-->
+	<about
+		name="rk.shiny.plugins"
+		shortinfo="Un paquete de plugins de RKWard para lanzar interfaces interactivas de Shiny."
+		longinfo="Un paquete de plugins de RKWard para lanzar interfaces interactivas de Shiny."
+		version="1.0.0"
+		releasedate="2025-08-26"
+		url="https://github.com/AlfCano/rk.survey.design"
+		license="GPL (&gt;= 3)"
+	>
+		<author
+			given="Alfonso"
+			family="Cano"
+			email="alfonso.cano@correo.buap.mx"
+			role="aut, cre"
+		/>
+	</about>
+	<require
+		map="rkward::menu"
+	/>
+	<require
+		map="rkward::embedded"
+	/>
+	<components>
+		<component
+			id="cmp_rkshinypluginsrpivotTable"
+			label="rpivotTable"
+			type="standard"
+			file="plugins/rpivotTable.xml"
+		>
+		</component>
+		<component
+			id="cmp_rkshinypluginsggplotshiny"
+			label="ggplot_shiny"
+			type="standard"
+			file="plugins/ggplot_shiny.xml"
+		>
+		</component>
+		<component
+			id="cmp_rkshinypluginsggquickeda"
+			label="ggquickeda"
+			type="standard"
+			file="plugins/ggquickeda.xml"
+		>
+		</component>
+		<component
+			id="cmp_rkshinypluginsrkshnyplgns"
+			label="rk.shiny.plugins"
+			type="standard"
+			file="plugins/rk.shiny.plugins.xml"
+		>
+		</component>
+	</components>
+	<hierarchy>
+		<menu
+			id="men_Shiny"
+			label="Shiny"
+		>
+			<menu
+				id="men_rpivotTabl"
+				label="rpivotTable"
+			>
+				<entry
+					component="cmp_rkshinypluginsrpivotTable"
+				/>
+			</menu>
+		</menu>
+		<menu
+			id="men_Shiny"
+			label="Shiny"
+		>
+			<menu
+				id="men_ggplotGUI"
+				label="ggplot GUI"
+			>
+				<entry
+					component="cmp_rkshinypluginsggplotshiny"
+				/>
+			</menu>
+		</menu>
+		<menu
+			id="men_Shiny"
+			label="Shiny"
+		>
+			<menu
+				id="men_ggquickeda"
+				label="ggquickeda"
+			>
+				<entry
+					component="cmp_rkshinypluginsggquickeda"
+				/>
+			</menu>
+		</menu>
+		<menu
+			id="men_test"
+			label="test"
+		>
+			<entry
+				component="cmp_rkshinypluginsrkshnyplgns"
+			/>
+		</menu>
+	</hierarchy>
+	<!--
+		<context
+			id="x11"
+		>
+		</context>
+	-->
+	<!--
+		<context
+			id="import"
+		>
+		</context>
+	-->
+</document>
