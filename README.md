@@ -1,2 +1,47 @@
 # rk.shiny.plugins
-Create a GUI for shiny plugins in RKWard 
+# RKWard Shiny Plugins Package Generator
+
+## Synopsis
+
+This repository contains a single R script, `make_shiny_package.R`, designed to programmatically generate a complete RKWard plugin package using the `rkwarddev` R package.
+
+The resulting R package, `rk.shiny.plugins`, bundles several interactive data visualization and analysis tools (Shiny apps and HTML widgets) into a single, easy-to-install RKWard extension. The entire development process is encapsulated within the R script, making it reproducible, easy to maintain, and simple to extend with new plugins.
+
+## Features
+
+*   **Programmatic Generation**: The entire plugin structure, including all `.xml`, `.js`, and help files, is generated from a single R script. There is no need to manually edit XML or other plugin files.
+*   **Single, Unified Package**: All interactive plugins are bundled into one package for easy distribution and installation.
+*   **Extensible by Design**: The component-based architecture makes it straightforward to add new interactive plugins to the package by simply defining a new component in the script.
+*   **Best Practices Included**: The generation script follows the best practices discovered through extensive testing, including the correct syntax for your version of `rkwarddev` and a robust structure for the help files and JavaScript logic.
+
+## Plugins Included
+
+This package currently generates the following three plugins, all accessible from the "Shiny" menu in RKWard:
+
+### 1. rpivotTable
+
+*   **Description**: Creates a powerful and interactive drag-and-drop pivot table, similar to those found in spreadsheet software. Ideal for quick data exploration and summarization.
+*   **Depends on**: `rpivotTable` R package.
+*   **Features**: Includes an option to save the generated pivot table widget to an object in the R environment.
+
+### 2. ggplot GUI
+
+*   **Description**: Launches the `ggplot_shiny()` interactive interface from the `ggplotgui` package. This provides a "point-and-click" graphical user interface for building complex `ggplot2` graphics.
+*   **Depends on**: `ggplotgui` R package.
+
+### 3. ggquickeda
+
+*   **Description**: Launches the `run_ggquickeda()` interactive interface from the `ggquickeda` package. This provides a comprehensive Shiny gadget for exploratory data analysis.
+*   **Depends on**: `ggquickeda` R package.
+
+## How to Use
+
+Follow these steps to generate, compile, and install the complete plugin package.
+
+### Prerequisites
+
+Ensure you have R, RKWard, and the necessary R packages installed. You can install all required R packages by running this command in your R console:
+
+```{r}
+install.packages(c("rkwarddev", "devtools", "rpivotTable", "ggplotgui", "ggquickeda"))
+```
