@@ -1,9 +1,10 @@
 # rk.shiny.plugins
+
 ## RKWard Shiny Plugins Package and Generator
 
 ## Synopsis
 
-This repository contains a single R script, `make_shiny_package.R`, designed to programmatically generate a complete RKWard plugin package using the `rkwarddev` R package.
+This repository contains a single R script, `make_rk_shiny.R`, designed to programmatically generate a complete RKWard plugin package using the `rkwarddev` R package.
 
 The resulting R package, `rk.shiny.plugins`, bundles several interactive data visualization and analysis tools (Shiny apps and HTML widgets) into a single, easy-to-install RKWard extension. The entire development process is encapsulated within the R script, making it reproducible, easy to maintain, and simple to extend with new plugins.
 
@@ -42,12 +43,40 @@ Follow these steps to generate, compile, and install the complete plugin package
 
 Ensure you have R, RKWard, and the necessary R packages installed. You can install all required R packages by running this command in your R console:
 
-```{r}
+```{r echo=TRUE, eval=FALSE}
 install.packages(c( "devtools", "rpivotTable", "ggplotgui", "ggquickeda"))
 ```
 
+### Installation
+
+
+If you have installed `RKWard >= 0.7.4`, you can use the install fuctionality directly from git. As shown here: [Shiny apps on RKWard](https://docs.google.com/presentation/d/1o8Sd197UYkWc4YPAriTVX0oZHVYuxsbB304vPRrbra8/edit?slide=id.g382e8f418b2_0_0#slide=id.g382e8f418b2_0_0)
+
+You just need to add:
+
+* User name: "AlfCano",
+* Repository: "rk.shiny.plugins"
+
+
+Or, just run the next command in your R console:
+
+```{r echo=TRUE, eval=FALSE}
+local({
+## Preparar
+require(devtools)
+## Computar
+  install_github(
+    repo="AlfCano/rk.shiny.plugins"
+  )
+## Imprimir el resultado
+rk.header ("Results of installing from git")
+})
+```
+
 ### Generator
+
 To run the generator `rkwarddev` package is needed.
-```{r}
+
+```{r echo=TRUE, eval=FALSE}
 install.packages("rkwarddev")
 ```
