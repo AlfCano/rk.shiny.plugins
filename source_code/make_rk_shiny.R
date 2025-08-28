@@ -102,7 +102,7 @@ local({
   )
 
   ggplot_shiny_component <- rk.plugin.component(
-      "ggplot_shiny",
+      "ggplot GUI",
       xml = list(dialog = ggplot_dialog),
       js = list(require = "ggplotgui", calculate = js_ggplot_calculate, printout = js_ggplot_printout, results.header = FALSE),
       rkh = list(help = ggplot_help),
@@ -144,7 +144,7 @@ local({
       xml = list(dialog = ggquickeda_dialog),
       js = list(require = "ggquickeda", calculate = js_ggquickeda_calculate, printout = js_ggquickeda_printout, results.header = FALSE),
       rkh = list(help = ggquickeda_help),
-      hierarchy = list("Shiny", "ggquickeda"),
+      hierarchy = list("Shiny", "Quick EDA"),
       provides = c("dialog", "logic")
   )
 
@@ -163,9 +163,9 @@ local({
     # Pass the list of ADDITIONAL components.
     components = list(ggplot_shiny_component, ggquickeda_component),
     pluginmap = list(
-        name = "rk.shiny.plugins",
-        hierarchy = list("Shiny", "rpivotTable"), # Hierarchy of the main component
-        po_id = "rk.shiny.plugins"
+        name = "rpivotTable",
+        hierarchy = list("Shiny", "Pivot Table"), # Hierarchy of the main component
+        po_id = "rpivotTable"
     ),
     create = c("pmap", "xml", "js", "desc", "rkh"),
     overwrite = overwrite,
