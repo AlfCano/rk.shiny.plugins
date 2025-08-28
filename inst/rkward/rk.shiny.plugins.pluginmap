@@ -3,9 +3,9 @@
 >
 <document
 	base_prefix=""
-	namespace="rkshinyplugins"
-	id="rkshinyplugins_rkward"
-	po_id="rkshinyplugins_rkward"
+	namespace="rpivotTable"
+	id="rpivotTable_rkward"
+	po_id="rpivotTable_rkward"
 	priority="medium"
 >
 	<!--
@@ -21,7 +21,7 @@
 		shortinfo="An RKWard plugin package to launch interactive Shiny interfaces."
 		longinfo="An RKWard plugin package to launch interactive Shiny interfaces."
 		version="1.0.1"
-		releasedate="2025-08-26"
+		releasedate="2025-08-27"
 		url="https://github.com/AlfCano/rk.survey.design"
 		license="GPL (&gt;= 3)"
 	>
@@ -40,24 +40,24 @@
 	/>
 	<components>
 		<component
-			id="cmp_rkshinypluginsggplotshiny"
-			label="ggplot_shiny"
+			id="cmp_rpivotTableggplotGUI"
+			label="ggplot GUI"
 			type="standard"
-			file="plugins/ggplot_shiny.xml"
+			file="plugins/ggplotGUI.xml"
 		>
 		</component>
 		<component
-			id="cmp_rkshinypluginsggquickeda"
+			id="cmp_rpivotTableggquickeda"
 			label="ggquickeda"
 			type="standard"
 			file="plugins/ggquickeda.xml"
 		>
 		</component>
 		<component
-			id="cmp_rkshinypluginsrkshnyplgns"
-			label="rk.shiny.plugins"
+			id="cmp_rpivotTablerpivotTable"
+			label="rpivotTable"
 			type="standard"
-			file="plugins/rk.shiny.plugins.xml"
+			file="plugins/rpivotTable.xml"
 		>
 		</component>
 	</components>
@@ -71,7 +71,7 @@
 				label="ggplot GUI"
 			>
 				<entry
-					component="cmp_rkshinypluginsggplotshiny"
+					component="cmp_rpivotTableggplotGUI"
 				/>
 			</menu>
 		</menu>
@@ -80,11 +80,11 @@
 			label="Shiny"
 		>
 			<menu
-				id="men_ggquickeda"
-				label="ggquickeda"
+				id="men_QuickEDA"
+				label="Quick EDA"
 			>
 				<entry
-					component="cmp_rkshinypluginsggquickeda"
+					component="cmp_rpivotTableggquickeda"
 				/>
 			</menu>
 		</menu>
@@ -93,11 +93,11 @@
 			label="Shiny"
 		>
 			<menu
-				id="men_rpivotTabl"
-				label="rpivotTable"
+				id="men_PivotTable"
+				label="Pivot Table"
 			>
 				<entry
-					component="cmp_rkshinypluginsrkshnyplgns"
+					component="cmp_rpivotTablerpivotTable"
 				/>
 			</menu>
 		</menu>
