@@ -21,19 +21,40 @@
 	<dialog label="Interactive Pivot Table (rpivotTable)">
 		<tabbook>
 			<tab label="Configuration" id="tab_Confgrtn">
-				<row id="row_clmndcOODD">
-					<column id="clm_vrslctrddO">
-						<varselector id="dataframe_source" label="Objects in workspace" />
-					</column>
-					<column id="clm_vrsltddtsD">
-						<varslot id="data_slot" label="Dataset (drag here)" source="dataframe_source" />
+				<row id="row_vODPRPCDPR">
+					<varselector id="dataframe_source_id" label="Objects in workspace" />
+					<column id="clm_vrsltDPRPC">
+						<varslot id="data_slot" label="Dataset (drag here)" source="dataframe_source_id" />
+						<varslot id="rows_slot" label="Pre-populate Rows (optional)" source="dataframe_source_id" />
+						<varslot id="cols_slot" label="Pre-populate Columns (optional)" source="dataframe_source_id" />
 					</column>
 				</row>
 			</tab>
-			<tab label="Output Options" id="tab_OtptOptn">
+			<tab label="Options" id="tab_Options">
+				<column id="clm_dACCSSAASF">
+					<dropdown id="drp_aggregator" label="Aggregator">
+						<option label="Count" value="Count" checked="true" />
+						<option label="Sum" value="Sum" />
+						<option label="Average" value="Average" />
+						<option label="Sum as Fraction of Total" value="Sum as Fraction of Total" />
+						<option label="Sum as Fraction of Rows" value="Sum as Fraction of Rows" />
+						<option label="Sum as Fraction of Columns" value="Sum as Fraction of Columns" />
+					</dropdown>
+					<dropdown id="drp_renderer" label="Renderer">
+						<option label="Table" value="Table" checked="true" />
+						<option label="Table Barchart" value="Table Barchart" />
+						<option label="Heatmap" value="Heatmap" />
+						<option label="Row Heatmap" value="Row Heatmap" />
+						<option label="Col Heatmap" value="Col Heatmap" />
+					</dropdown>
+					<input label="Width (e.g., 100% or 800px)" id="inp_width" initial="100%" />
+					<input label="Height (e.g., 400px)" id="inp_height" initial="400px" />
+				</column>
+			</tab>
+			<tab label="Output" id="tab_Output">
 				<row id="row_clmndclmSS">
 					<column id="clm_svbjctlblS">
-						<saveobject label="Save pivot table to" checkable="true" initial="result" id="save_pivot" />
+						<saveobject label="Save pivot table to" checkable="true" initial="pivot.table.output" id="save_pivot" />
 					</column>
 				</row>
 			</tab>

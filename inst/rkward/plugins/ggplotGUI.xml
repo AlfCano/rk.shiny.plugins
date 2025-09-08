@@ -20,11 +20,11 @@
 	</logic>
 	<dialog label="Interactive Plot Builder (ggplot)">
 		<row id="row_clmndcOODD">
-			<column id="clm_vrslctrddO">
-				<varselector id="dataframe_source" label="Objects in workspace" />
+			<column id="clm_vrslctrdgO">
+				<varselector id="ggplot_dataframe_source_id" label="Objects in workspace" />
 			</column>
 			<column id="clm_vrsltddtsD">
-				<varslot id="data_slot" label="Dataset (drag here)" source="dataframe_source" />
+				<varslot id="data_slot" label="Dataset (drag here)" source="ggplot_dataframe_source_id" />
 			</column>
 		</row>
 	</dialog>
