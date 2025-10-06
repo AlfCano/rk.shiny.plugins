@@ -50,15 +50,10 @@ install.packages(c( "devtools", "rpivotTable", "ggplotgui", "ggquickeda"))
 ### Installation
 
 
-If you have installed `RKWard >= 0.7.4`, you can use the install fuctionality directly from git. As shown here: [Shiny apps on RKWard](https://docs.google.com/presentation/d/1o8Sd197UYkWc4YPAriTVX0oZHVYuxsbB304vPRrbra8/edit?slide=id.g382e8f418b2_0_0#slide=id.g382e8f418b2_0_0)
-
-You just need to add:
-
-* User name: "AlfCano",
-* Repository: "rk.shiny.plugins"
+If you have installed the add-on  (`RKWard >= 0.7.4`) 
 
 
-Or, just run the next command in your R console:
+Run the next command in your R console:
 
 ```{r echo=TRUE, eval=FALSE}
 local({
@@ -73,16 +68,9 @@ rk.header ("Results of installing from git")
 })
 ```
 
+
 ### Generator
-
 To run the generator `rkwarddev` package is needed.
-
 ```{r echo=TRUE, eval=FALSE}
 install.packages("rkwarddev")
 ```
-
-
-## Author
-
-* Alfonso Cano (alfonso.cano@correo.buap.mx)  
-* Assisted by Gemini, a large language model from Google.

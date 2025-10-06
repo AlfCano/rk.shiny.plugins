@@ -4,8 +4,8 @@
 		this code was generated using the rkwarddev package.
 	perhaps don't make changes here, but in the rkwarddev script instead!
 	-->
-	<code file="rpivotTable.js" />
-	<help file="rpivotTable.rkh" />
+	<code file="PivotTable.js" />
+	<help file="PivotTable.rkh" />
 	<!--
 		<dependencies>
 		</dependencies>
