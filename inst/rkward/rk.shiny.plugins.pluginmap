@@ -3,9 +3,9 @@
 >
 <document
 	base_prefix=""
-	namespace="rpivotTable"
-	id="rpivotTable_rkward"
-	po_id="rpivotTable_rkward"
+	namespace="PivotTable"
+	id="PivotTable_rkward"
+	po_id="PivotTable_rkward"
 	priority="medium"
 >
 	<!--
@@ -20,8 +20,8 @@
 		name="rk.shiny.plugins"
 		shortinfo="An RKWard plugin package to launch interactive Shiny interfaces."
 		longinfo="An RKWard plugin package to launch interactive Shiny interfaces."
-		version="1.0.2"
-		releasedate="2025-09-08"
+		version="1.0.3"
+		releasedate="2025-10-06"
 		url="https://github.com/AlfCano/rk.survey.design"
 		license="GPL (&gt;= 3)"
 	>
@@ -40,24 +40,24 @@
 	/>
 	<components>
 		<component
-			id="cmp_rpivotTableggplotGUI"
+			id="cmp_PivotTableggplotGUI"
 			label="ggplot GUI"
 			type="standard"
 			file="plugins/ggplotGUI.xml"
 		>
 		</component>
 		<component
-			id="cmp_rpivotTableggquickeda"
-			label="ggquickeda"
+			id="cmp_PivotTableQuickEDA"
+			label="Quick EDA"
 			type="standard"
-			file="plugins/ggquickeda.xml"
+			file="plugins/QuickEDA.xml"
 		>
 		</component>
 		<component
-			id="cmp_rpivotTablerpivotTable"
-			label="rpivotTable"
+			id="cmp_PivotTablePivotTable"
+			label="Pivot Table"
 			type="standard"
-			file="plugins/rpivotTable.xml"
+			file="plugins/PivotTable.xml"
 		>
 		</component>
 	</components>
@@ -66,40 +66,25 @@
 			id="men_Shiny"
 			label="Shiny"
 		>
-			<menu
-				id="men_ggplotGUI"
-				label="ggplot GUI"
-			>
-				<entry
-					component="cmp_rpivotTableggplotGUI"
-				/>
-			</menu>
+			<entry
+				component="cmp_PivotTableggplotGUI"
+			/>
 		</menu>
 		<menu
 			id="men_Shiny"
 			label="Shiny"
 		>
-			<menu
-				id="men_QuickEDA"
-				label="Quick EDA"
-			>
-				<entry
-					component="cmp_rpivotTableggquickeda"
-				/>
-			</menu>
+			<entry
+				component="cmp_PivotTableQuickEDA"
+			/>
 		</menu>
 		<menu
 			id="men_Shiny"
 			label="Shiny"
 		>
-			<menu
-				id="men_PivotTable"
-				label="Pivot Table"
-			>
-				<entry
-					component="cmp_rpivotTablerpivotTable"
-				/>
-			</menu>
+			<entry
+				component="cmp_PivotTablePivotTable"
+			/>
 		</menu>
 	</hierarchy>
 	<!--
