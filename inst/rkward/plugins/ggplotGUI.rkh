@@ -4,9 +4,6 @@
 		this code was generated using the rkwarddev package.
 	perhaps don't make changes here, but in the rkwarddev script instead!
 	-->
-	<title>
-		ggplot GUI
-	</title>
 	<summary>
 	</summary>
 	<usage>
@@ -17,7 +14,7 @@
 		</section>
 	-->
 	<settings>
-		<setting id="data_slot">
+		<setting id="esq_data">
 		</setting>
 	</settings>
 	<!--

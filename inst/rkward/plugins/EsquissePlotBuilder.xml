@@ -4,8 +4,8 @@
 		this code was generated using the rkwarddev package.
 	perhaps don't make changes here, but in the rkwarddev script instead!
 	-->
-	<code file="ggplotGUI.js" />
-	<help file="ggplotGUI.rkh" />
+	<code file="EsquissePlotBuilder.js" />
+	<help file="EsquissePlotBuilder.rkh" />
 	<!--
 		<dependencies>
 		</dependencies>
@@ -18,7 +18,7 @@
 			<connect governor="!edit!.state" client="!edit!.enabled" />
 		-->
 	</logic>
-	<dialog label="ggplot GUI (Esquisse)">
+	<dialog label="Esquisse (Drag-and-Drop Plot)">
 		<row id="row_vrslctrODD">
 			<varselector id="shared_workspace_selector" label="Objects in workspace" />
 			<column id="clm_vrsltdsqdD">

@@ -5,7 +5,7 @@
 
 function preprocess(is_preview){
 	// add requirements etc. here
-	echo("require(ggquickeda)\n");
+	echo("require(esquisse)\n");
 }
 
 function calculate(is_preview){
@@ -13,13 +13,13 @@ function calculate(is_preview){
 
 
 	// the R code to be evaluated
-var df = getValue("quick_data"); echo("ggquickeda::run_ggquickeda(" + df + ")\n");
+var df = getValue("esq_data"); echo("esquisse::esquisser(" + df + ")\n");
 }
 
 function printout(is_preview){
 	// printout the results
-	new Header(i18n("Quick EDA results")).print();
-echo("rk.header(\"ggquickeda Launched\")\n");
+	new Header(i18n("Esquisse Plot Builder results")).print();
+echo("rk.header(\"Esquisse Launched\")\n");
 
 }
 

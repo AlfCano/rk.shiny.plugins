@@ -18,11 +18,11 @@
 	-->
 	<about
 		name="rk.shiny.plugins"
-		shortinfo="An RKWard plugin package to launch interactive Shiny interfaces."
-		longinfo="An RKWard plugin package to launch interactive Shiny interfaces."
-		version="1.0.3"
-		releasedate="2025-10-06"
-		url="https://github.com/AlfCano/rk.survey.design"
+		shortinfo="A collection of interactive Shiny interfaces for RKWard."
+		longinfo="A collection of interactive Shiny interfaces for RKWard."
+		version="1.1.0"
+		releasedate="2025-12-25"
+		url="https://github.com/AlfCano/rk.shiny.plugins"
 		license="GPL (&gt;= 3)"
 	>
 		<author
@@ -47,10 +47,38 @@
 		>
 		</component>
 		<component
+			id="cmp_PivotTableAutomatdEDARprt"
+			label="Automated EDA Report"
+			type="standard"
+			file="plugins/AutomatedEDAReport.xml"
+		>
+		</component>
+		<component
 			id="cmp_PivotTableQuickEDA"
 			label="Quick EDA"
 			type="standard"
 			file="plugins/QuickEDA.xml"
+		>
+		</component>
+		<component
+			id="cmp_PivotTableFctshnyPCACAMCA"
+			label="Factoshiny (PCA/CA/MCA)"
+			type="standard"
+			file="plugins/FactoshinyPCACAMCA.xml"
+		>
+		</component>
+		<component
+			id="cmp_PivotTableShinystnDgnstcs"
+			label="Shinystan Diagnostics"
+			type="standard"
+			file="plugins/ShinystanDiagnostics.xml"
+		>
+		</component>
+		<component
+			id="cmp_PivotTableShinyItemAnlyss"
+			label="Shiny Item Analysis"
+			type="standard"
+			file="plugins/ShinyItemAnalysis.xml"
 		>
 		</component>
 		<component
@@ -66,25 +94,92 @@
 			id="men_Shiny"
 			label="Shiny"
 		>
-			<entry
-				component="cmp_PivotTableggplotGUI"
-			/>
+			<menu
+				id="men_Visualiztn"
+				label="Visualization"
+			>
+				<entry
+					component="cmp_PivotTableggplotGUI"
+				/>
+			</menu>
 		</menu>
 		<menu
 			id="men_Shiny"
 			label="Shiny"
 		>
-			<entry
-				component="cmp_PivotTableQuickEDA"
-			/>
+			<menu
+				id="men_Exploratin"
+				label="Exploration"
+			>
+				<entry
+					component="cmp_PivotTableAutomatdEDARprt"
+				/>
+			</menu>
 		</menu>
 		<menu
 			id="men_Shiny"
 			label="Shiny"
 		>
-			<entry
-				component="cmp_PivotTablePivotTable"
-			/>
+			<menu
+				id="men_Exploratin"
+				label="Exploration"
+			>
+				<entry
+					component="cmp_PivotTableQuickEDA"
+				/>
+			</menu>
+		</menu>
+		<menu
+			id="men_Shiny"
+			label="Shiny"
+		>
+			<menu
+				id="men_Statistics"
+				label="Statistics"
+			>
+				<entry
+					component="cmp_PivotTableFctshnyPCACAMCA"
+				/>
+			</menu>
+		</menu>
+		<menu
+			id="men_Shiny"
+			label="Shiny"
+		>
+			<menu
+				id="men_Statistics"
+				label="Statistics"
+			>
+				<entry
+					component="cmp_PivotTableShinystnDgnstcs"
+				/>
+			</menu>
+		</menu>
+		<menu
+			id="men_Shiny"
+			label="Shiny"
+		>
+			<menu
+				id="men_Psychmtrcs"
+				label="Psychometrics"
+			>
+				<entry
+					component="cmp_PivotTableShinyItemAnlyss"
+				/>
+			</menu>
+		</menu>
+		<menu
+			id="men_Shiny"
+			label="Shiny"
+		>
+			<menu
+				id="men_Visualiztn"
+				label="Visualization"
+			>
+				<entry
+					component="cmp_PivotTablePivotTable"
+				/>
+			</menu>
 		</menu>
 	</hierarchy>
 	<!--

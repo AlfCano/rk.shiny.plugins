@@ -5,7 +5,7 @@
 
 function preprocess(is_preview){
 	// add requirements etc. here
-	echo("require(ggquickeda)\n");
+	echo("require(shinystan)\n");
 }
 
 function calculate(is_preview){
@@ -13,13 +13,13 @@ function calculate(is_preview){
 
 
 	// the R code to be evaluated
-var df = getValue("quick_data"); echo("ggquickeda::run_ggquickeda(" + df + ")\n");
+var obj = getValue("stan_obj"); echo("shinystan::launch_shinystan(" + obj + ")\n");
 }
 
 function printout(is_preview){
 	// printout the results
-	new Header(i18n("Quick EDA results")).print();
-echo("rk.header(\"ggquickeda Launched\")\n");
+	new Header(i18n("Shinystan Diagnostics results")).print();
+echo("rk.header(\"Shinystan Launched\")\n");
 
 }
 

@@ -4,8 +4,8 @@
 		this code was generated using the rkwarddev package.
 	perhaps don't make changes here, but in the rkwarddev script instead!
 	-->
-	<code file="ggplotGUI.js" />
-	<help file="ggplotGUI.rkh" />
+	<code file="ShinyItemAnalysis.js" />
+	<help file="ShinyItemAnalysis.rkh" />
 	<!--
 		<dependencies>
 		</dependencies>
@@ -18,12 +18,12 @@
 			<connect governor="!edit!.state" client="!edit!.enabled" />
 		-->
 	</logic>
-	<dialog label="ggplot GUI (Esquisse)">
-		<row id="row_vrslctrODD">
-			<varselector id="shared_workspace_selector" label="Objects in workspace" />
-			<column id="clm_vrsltdsqdD">
-				<varslot id="esq_data" label="Dataset" source="shared_workspace_selector" classes="data.frame" required="true" />
-			</column>
-		</row>
+	<dialog label="Shiny Item Analysis">
+		<column id="clm_tCSSIADCSS">
+			<text id="txt_ClcSSIAD">
+				Click Submit to launch the ShinyItemAnalysis suite.
+	(Data can be uploaded inside the app or selected from built-in examples).
+			</text>
+		</column>
 	</dialog>
 </document>

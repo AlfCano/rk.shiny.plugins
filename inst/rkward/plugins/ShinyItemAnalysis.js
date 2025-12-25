@@ -5,21 +5,18 @@
 
 function preprocess(is_preview){
 	// add requirements etc. here
-	echo("require(ggquickeda)\n");
+	echo("require(ShinyItemAnalysis)\n");
 }
 
 function calculate(is_preview){
-	// read in variables from dialog
-
-
 	// the R code to be evaluated
-var df = getValue("quick_data"); echo("ggquickeda::run_ggquickeda(" + df + ")\n");
+echo("ShinyItemAnalysis::startShinyItemAnalysis()\n");
 }
 
 function printout(is_preview){
 	// printout the results
-	new Header(i18n("Quick EDA results")).print();
-echo("rk.header(\"ggquickeda Launched\")\n");
+	new Header(i18n("Shiny Item Analysis results")).print();
+echo("rk.header(\"ShinyItemAnalysis Launched\")\n");
 
 }
 

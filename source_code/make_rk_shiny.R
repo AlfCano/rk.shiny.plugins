@@ -1,24 +1,17 @@
 local({
-# Golden Rule 1: This R script is the single source of truth.
-# It programmatically defines and generates all plugin files.
+  # =========================================================================================
+  # 1. Package Definition and Metadata
+  # =========================================================================================
+  require(rkwarddev)
+  rkwarddev.required("0.08-1")
 
-# --- PRE-FLIGHT CHECK ---
-# Stop if the user is accidentally running this inside an existing plugin folder
-if(basename(getwd()) == "rk.shiny.plugins") {
-  stop("Your current working directory is already 'rk.shiny.plugins'. Please navigate to the parent directory ('..') before running this script to avoid creating a nested folder structure.")
-}
+  plugin_name <- "rk.shiny.plugins"
 
-# Require "rkwarddev"
-require(rkwarddev)
-rkwarddev.required("0.08-1")
+  if(basename(getwd()) == plugin_name) {
+    stop("Please run this script from the parent directory to avoid nested folders.")
+  }
 
-# --- GLOBAL SETTINGS ---
-plugin_name <- "rk.shiny.plugins"
-
-# =========================================================================================
-# PACKAGE DEFINITION (GLOBAL METADATA)
-# =========================================================================================
-package_about <- rk.XML.about(
+  package_about <- rk.XML.about(
     name = plugin_name,
     author = person(
       given = "Alfonso",
@@ -27,241 +20,190 @@ package_about <- rk.XML.about(
       role = c("aut", "cre")
     ),
     about = list(
-      desc = "An RKWard plugin package to launch interactive Shiny interfaces.",
-      version = "1.0.3",
-      url = "https://github.com/AlfCano/rk.survey.design",
+      desc = "A collection of interactive Shiny interfaces for RKWard.",
+      version = "1.1.0",
+      url = "https://github.com/AlfCano/rk.shiny.plugins",
       license = "GPL (>= 3)"
     )
-)
+  )
 
-# =========================================================================================
-# COMPONENT DEFINITION 1: rpivotTable (Main Component)
-# =========================================================================================
+  # --- Shared Resources ---
+  shared_var_selector <- rk.XML.varselector(id.name = "shared_workspace_selector", label = "Objects in workspace")
 
-# --- UI Definition for rpivotTable ---
+  # =========================================================================================
+  # VISUALIZATION GROUP
+  # Hierarchy: Shiny > Visualization
+  # =========================================================================================
+  h_viz <- list("Shiny", "Visualization")
 
-# TAB 1: Configuration
-# The varselector MUST have an explicit id.name.
-pivot_df_selector <- rk.XML.varselector(id.name = "dataframe_source_id", label = "Objects in workspace")
+  # --- 1. Pivot Table (rpivotTable) [MAIN COMPONENT] ---
+  piv_data <- rk.XML.varslot(id.name = "piv_data", label = "Dataset", source = "shared_workspace_selector", classes = "data.frame", required = TRUE)
+  piv_rows <- rk.XML.varslot(id.name = "piv_rows", label = "Pre-populate Rows", source = "shared_workspace_selector", multi = TRUE)
+  piv_cols <- rk.XML.varslot(id.name = "piv_cols", label = "Pre-populate Cols", source = "shared_workspace_selector", multi = TRUE)
+  piv_opts <- rk.XML.col(
+      rk.XML.dropdown(label = "Aggregator", id.name = "piv_agg", options = list("Count"=list(val="Count", chk=TRUE), "Sum"=list(val="Sum"), "Average"=list(val="Average"))),
+      rk.XML.dropdown(label = "Renderer", id.name = "piv_ren", options = list("Table"=list(val="Table", chk=TRUE), "Heatmap"=list(val="Heatmap"), "Bar Chart"=list(val="Bar Chart"))),
+      rk.XML.input(label = "Height", initial = "500px", id.name = "piv_h")
+  )
+  piv_dialog <- rk.XML.dialog(label = "Interactive Pivot Table", child = rk.XML.tabbook(tabs = list("Data" = rk.XML.row(shared_var_selector, rk.XML.col(piv_data, piv_rows, piv_cols)), "Options" = piv_opts)))
 
-# All varslots now source from the explicit "dataframe_source_id"
-pivot_data_slot <- rk.XML.varslot(id.name = "data_slot", label = "Dataset (drag here)", source = "dataframe_source_id")
-attr(pivot_data_slot, "required") <- "1"
-attr(pivot_data_slot, "classes") <- "data.frame"
-
-rows_varslot <- rk.XML.varslot(label = "Pre-populate Rows (optional)", source = "dataframe_source_id", id.name="rows_slot")
-attr(rows_varslot, "multi") <- "1"
-
-cols_varslot <- rk.XML.varslot(label = "Pre-populate Columns (optional)", source = "dataframe_source_id", id.name="cols_slot")
-attr(cols_varslot, "multi") <- "1"
-
-config_tab_content <- rk.XML.row(
-    pivot_df_selector,
-    rk.XML.col(pivot_data_slot, rows_varslot, cols_varslot)
-)
-
-
-# TAB 2: Options
-aggregator_dropdown <- rk.XML.dropdown(label = "Aggregator", id.name = "drp_aggregator", options = list(
-    "Count" = list(val = "Count", chk = TRUE), "Sum" = list(val = "Sum"), "Average" = list(val = "Average"),
-    "Sum as Fraction of Total" = list(val = "Sum as Fraction of Total"), "Sum as Fraction of Rows" = list(val = "Sum as Fraction of Rows"),
-    "Sum as Fraction of Columns" = list(val = "Sum as Fraction of Columns")
-))
-renderer_dropdown <- rk.XML.dropdown(label = "Renderer", id.name = "drp_renderer", options = list(
-    "Table" = list(val = "Table", chk = TRUE), "Table Barchart" = list(val = "Table Barchart"),
-    "Heatmap" = list(val = "Heatmap"), "Row Heatmap" = list(val = "Row Heatmap"), "Col Heatmap" = list(val = "Col Heatmap")
-))
-width_input <- rk.XML.input(label = "Width (e.g., 100% or 800px)", initial = "100%", id.name = "inp_width")
-height_input <- rk.XML.input(label = "Height (e.g., 400px)", initial = "400px", id.name = "inp_height")
-
-options_tab_content <- rk.XML.col(aggregator_dropdown, renderer_dropdown, width_input, height_input)
-
-# TAB 3: Output Options
-pivot_save_object <- rk.XML.saveobj(
-    label = "Save pivot table to",
-    initial = "pivot.table.output",
-    id.name = "save_pivot"
-)
-output_tab_content <- rk.XML.row(rk.XML.col(pivot_save_object))
-
-# Assemble the final UI dialog
-pivot_dialog <- rk.XML.dialog(
-    label = "Interactive Pivot Table (rpivotTable)",
-    child = rk.XML.tabbook(
-      tabs = list(
-        "Configuration" = config_tab_content,
-        "Options" = options_tab_content,
-        "Output" = output_tab_content
-      )
-    )
-)
-
-# --- Help File Definition for rpivotTable ---
-pivot_help <- rk.rkh.doc(
-    summary = rk.rkh.summary(text = "Creates an interactive pivot table from a data.frame."),
-    usage = rk.rkh.usage(text = "Select a data.frame and optionally pre-populate the rows and columns on the 'Configuration' tab. Further options can be set on the 'Options' tab."),
-    sections = list(
-        rk.rkh.section(title="Configuration", text="Select the data.frame to use for the pivot table. Once a data.frame is selected, you can also pre-select columns to appear in the rows and columns of the initial pivot table.", short="Configuration"),
-        rk.rkh.section(title="Options", text="Select the default Aggregator, Renderer, and specify the width and height of the pivot table widget.", short="Options")
-    ),
-    title = rk.rkh.title(text = "rpivotTable")
-)
+  js_piv_calc <- '
+      var df=getValue("piv_data"); var rows=getValue("piv_rows"); var cols=getValue("piv_cols");
+      var agg=getValue("piv_agg"); var ren=getValue("piv_ren"); var h=getValue("piv_h");
+      function cleanList(lst) { if (!lst) return ""; var arr = (typeof lst === "string") ? [lst] : lst; return "c(" + arr.map(function(x){ return "\\\"" + x.split("$").pop().split("[[").pop().replace(/[\\]\\"]/g, "") + "\\\"" }).join(",") + ")"; }
+      var opts = []; opts.push("data=" + df);
+      if (rows) opts.push("rows=" + cleanList(rows)); if (cols) opts.push("cols=" + cleanList(cols));
+      if (agg != "Count") opts.push("aggregatorName=\\\"" + agg + "\\\"");
+      if (ren != "Table") opts.push("rendererName=\\\"" + ren + "\\\"");
+      opts.push("height=\\\"" + h + "\\\"");
+      echo("rpivot_res <- rpivotTable::rpivotTable(" + opts.join(", ") + ")\\n");
+  '
+  js_piv_print <- 'echo("rk.header(\\"Interactive Pivot Table\\");\\nprint(rpivot_res)\\n");'
 
 
-# --- JavaScript Logic for rpivotTable ---
-# CORRECTED JAVASCRIPT: Handles cases where getValue() returns a single string instead of an array.
-js_pivot_calculate <- '
-    // Load GUI values
-    var data_frame = getValue("data_slot");
-    var rows_full = getValue("rows_slot");
-    var cols_full = getValue("cols_slot");
-    var aggregator = getValue("drp_aggregator");
-    var renderer = getValue("drp_renderer");
-    var width = getValue("inp_width");
-    var height = getValue("inp_height");
-
-    // Helper function in JS to extract the pure column name
-    function getColumnName(fullVarName) {
-        if (!fullVarName) return "";
-        if (fullVarName.indexOf("[[") > -1) { return fullVarName.match(/\\[\\[\\\"(.*?)\\\"\\]\\]/)[1]; }
-        else if (fullVarName.indexOf("$") > -1) { return fullVarName.substring(fullVarName.lastIndexOf("$") + 1); }
-        else { return fullVarName; }
-    }
-
-    // Start building the R command
-    var options = new Array();
-    options.push("data = " + data_frame);
-
-    // Add optional arguments only if the user provided input.
-    if(rows_full){
-        // Robustness check: if only one item is selected, getValue() returns a string, not an array.
-        // We must convert it to an array before we can use .map().
-        var rows_array = Array.isArray(rows_full) ? rows_full : [rows_full];
-        var row_names = rows_array.map(function(item) { return \'\\"\' + getColumnName(item) + \'\\"\'; }).join(\',\');
-        options.push("rows = c(" + row_names + ")");
-    }
-    if(cols_full){
-        var cols_array = Array.isArray(cols_full) ? cols_full : [cols_full];
-        var col_names = cols_array.map(function(item) { return \'\\"\' + getColumnName(item) + \'\\"\'; }).join(\',\');
-        options.push("cols = c(" + col_names + ")");
-    }
-    if(aggregator != "Count"){
-        options.push("aggregatorName = \\"" + aggregator + "\\"");
-    }
-    if(renderer != "Table"){
-        options.push("rendererName = \\"" + renderer + "\\"");
-    }
-    options.push("width = \\"" + width + "\\"");
-    options.push("height = \\"" + height + "\\"");
-
-    // The final object name must match the saveobj initial argument.
-    echo("pivot.table.output <- rpivotTable(" + options.join(", ") + ")\\n");
-'
-
-js_pivot_printout <- '
-    echo("rk.header(\\"Interactive Pivot Table\\")\\n");
-    echo("print(pivot.table.output)\\n");
-'
-
-# =========================================================================================
-# COMPONENT DEFINITION 2: ggplot_shiny (Additional Component) - UNCHANGED
-# =========================================================================================
-js_ggplot_calculate <- "
-    var data_frame = getValue(\"data_slot\");
-    echo('result <- ggplot_shiny(dataset = ' + data_frame + ')\\n');
+  # --- 2. ggplot GUI (Original ggplotgui) ---
+  # UNCHANGED from your snippet
+  js_ggplot_calculate <- "
+      var data_frame = getValue(\"data_slot\");
+      echo('result <- ggplot_shiny(dataset = ' + data_frame + ')\\n');
   "
-js_ggplot_printout <- "
-    echo('rk.header(\\\"Launching ggplot Interface\\\")\\n');
-    echo('print(result)\\n');
+  js_ggplot_printout <- "
+      echo('rk.header(\\\"Launching ggplot Interface\\\")\\n');
+      echo('print(result)\\n');
   "
-ggplot_df_selector <- rk.XML.varselector(id.name = "ggplot_dataframe_source_id", label = "Objects in workspace")
-ggplot_data_slot <- rk.XML.varslot(id.name = "data_slot", label = "Dataset (drag here)", source = "ggplot_dataframe_source_id")
-attr(ggplot_data_slot, "required") <- "1"
-attr(ggplot_data_slot, "classes") <- "data.frame"
+  # Note: I am adapting the ID to match the shared selector to keep the XML clean,
+  # but the logic remains identical to your snippet.
+  ggplot_data_slot <- rk.XML.varslot(id.name = "data_slot", label = "Dataset (drag here)", source = "shared_workspace_selector", classes = "data.frame", required = TRUE)
 
-ggplot_dialog <- rk.XML.dialog(
-    label = "Interactive Plot Builder (ggplot)",
-    child = rk.XML.row(rk.XML.col(ggplot_df_selector), rk.XML.col(ggplot_data_slot))
-)
-ggplot_help <- rk.rkh.doc(
-    summary = rk.rkh.summary(text = "Launches an interactive GUI to build plots with ggplot2."),
-    usage = rk.rkh.usage(text = "Drag the data.frame to the slot and run."),
-    sections = list(
-        rk.rkh.section(title="Configuration", text="Define the data.frame to use.", short="Configuration")
-    ),
-    title = rk.rkh.title(text = "ggplot GUI")
-)
+  ggplot_dialog <- rk.XML.dialog(
+      label = "Interactive Plot Builder (ggplot)",
+      child = rk.XML.row(shared_var_selector, rk.XML.col(ggplot_data_slot))
+  )
+  ggplot_help <- rk.rkh.doc(
+      summary = rk.rkh.summary(text = "Launches an interactive GUI to build plots with ggplot2."),
+      usage = rk.rkh.usage(text = "Drag the data.frame to the slot and run."),
+      sections = list(
+          rk.rkh.section(title="Configuration", text="Define the data.frame to use.", short="Configuration")
+      ),
+      title = rk.rkh.title(text = "ggplot GUI")
+  )
 
-ggplot_shiny_component <- rk.plugin.component(
-      "ggplot GUI",
-      xml = list(dialog = ggplot_dialog),
-      js = list(require = "ggplotgui", calculate = js_ggplot_calculate, printout = js_ggplot_printout, results.header = FALSE),
-      rkh = list(help = ggplot_help),
-      hierarchy = list("Shiny"),
-      provides = c("dialog", "logic")
-)
+  comp_ggplot <- rk.plugin.component(
+        "ggplot GUI",
+        xml = list(dialog = ggplot_dialog),
+        js = list(require = "ggplotgui", calculate = js_ggplot_calculate, printout = js_ggplot_printout, results.header = FALSE),
+        rkh = list(help = ggplot_help),
+        hierarchy = h_viz,
+        provides = c("dialog", "logic")
+  )
 
-# =========================================================================================
-# COMPONENT DEFINITION 3: ggquickeda (Additional Component) - UNCHANGED
-# =========================================================================================
-js_ggquickeda_calculate <- "
-    var data_frame = getValue(\"data_slot\");
-    echo('result <- run_ggquickeda(data = ' + data_frame + ')\\n');
-  "
-js_ggquickeda_printout <- "
-    echo('rk.header(\\\"Launching ggquickeda Interface\\\")\\n');
-    echo('print(result)\\n');
-  "
-ggquickeda_df_selector <- rk.XML.varselector(id.name = "ggquickeda_dataframe_source_id", label = "Objects in workspace")
-ggquickeda_data_slot <- rk.XML.varslot(id.name = "data_slot", label = "Dataset (drag here)", source = "ggquickeda_dataframe_source_id")
-attr(ggquickeda_data_slot, "required") <- "1"
-attr(ggquickeda_data_slot, "classes") <- "data.frame"
 
-ggquickeda_dialog <- rk.XML.dialog(
-    label = "Interactive Exploratory Analysis (ggquickeda)",
-    child = rk.XML.row(rk.XML.col(ggquickeda_df_selector), rk.XML.col(ggquickeda_data_slot))
-)
-ggquickeda_help <- rk.rkh.doc(
-    summary = rk.rkh.summary(text = "Launches an interactive GUI for exploratory data analysis."),
-    usage = rk.rkh.usage(text = "Drag the data.frame to the slot and run."),
-    sections = list(
-        rk.rkh.section(title="Configuration", text="Define the data.frame to use.", short="Configuration")
-    ),
-    title = rk.rkh.title(text = "ggquickeda GUI")
-)
+  # --- 3. Esquisse Plot Builder (New Esquisse) ---
+  esq_data <- rk.XML.varslot(id.name = "esq_data", label = "Dataset", source = "shared_workspace_selector", classes = "data.frame", required = TRUE)
+  esq_dialog <- rk.XML.dialog(label = "Esquisse (Tableau-style)", child = rk.XML.row(shared_var_selector, rk.XML.col(esq_data)))
+  js_esq_calc <- 'var df = getValue("esq_data"); echo("esquisse::esquisser(" + df + ")\\n");'
+  js_esq_print <- 'echo("rk.header(\\"Esquisse Launched\\")\\n");'
 
-ggquickeda_component <- rk.plugin.component(
-      "Quick EDA",
-      xml = list(dialog = ggquickeda_dialog),
-      js = list(require = "ggquickeda", calculate = js_ggquickeda_calculate, printout = js_ggquickeda_printout, results.header = FALSE),
-      rkh = list(help = ggquickeda_help),
-      hierarchy = list("Shiny"),
-      provides = c("dialog", "logic")
-)
+  comp_esq <- rk.plugin.component("Esquisse Plot Builder", xml=list(dialog=esq_dialog), js=list(require="esquisse", calculate=js_esq_calc, printout=js_esq_print), hierarchy=h_viz)
 
-# =========================================================================================
-# PACKAGE CREATION (THE MAIN CALL)
-# =========================================================================================
-plugin.dir <- rk.plugin.skeleton(
+
+  # =========================================================================================
+  # EXPLORATION GROUP
+  # Hierarchy: Shiny > Exploration
+  # =========================================================================================
+  h_exp <- list("Shiny", "Exploration")
+
+  # --- 4. Automated EDA Report (DataExplorer) ---
+  exp_data <- rk.XML.varslot(id.name = "exp_data", label = "Dataset", source = "shared_workspace_selector", classes = "data.frame", required = TRUE)
+  exp_dialog <- rk.XML.dialog(label = "Automated Data Report", child = rk.XML.row(shared_var_selector, rk.XML.col(exp_data)))
+  js_exp_calc <- 'var df = getValue("exp_data"); echo("DataExplorer::create_report(" + df + ")\\n");'
+  js_exp_print <- 'echo("rk.header(\\"Generating DataExplorer Report... check your browser.\\")\\n");'
+
+  comp_exp <- rk.plugin.component("Automated EDA Report", xml=list(dialog=exp_dialog), js=list(require="DataExplorer", calculate=js_exp_calc, printout=js_exp_print), hierarchy=h_exp)
+
+  # --- 5. Quick EDA (ggquickeda) ---
+  quick_data <- rk.XML.varslot(id.name = "quick_data", label = "Dataset", source = "shared_workspace_selector", classes = "data.frame", required = TRUE)
+  quick_dialog <- rk.XML.dialog(label = "Quick EDA", child = rk.XML.row(shared_var_selector, rk.XML.col(quick_data)))
+  js_quick_calc <- 'var df = getValue("quick_data"); echo("ggquickeda::run_ggquickeda(" + df + ")\\n");'
+  js_quick_print <- 'echo("rk.header(\\"ggquickeda Launched\\")\\n");'
+
+  comp_quick <- rk.plugin.component("Quick EDA", xml=list(dialog=quick_dialog), js=list(require="ggquickeda", calculate=js_quick_calc, printout=js_quick_print), hierarchy=h_exp)
+
+
+  # =========================================================================================
+  # STATISTICS GROUP
+  # Hierarchy: Shiny > Statistics
+  # =========================================================================================
+  h_stat <- list("Shiny", "Statistics")
+
+  # --- 6. Factoshiny ---
+  fact_data <- rk.XML.varslot(id.name = "fact_data", label = "Data or PCA/CA Object", source = "shared_workspace_selector", required = TRUE)
+  fact_dialog <- rk.XML.dialog(label = "Factoshiny (Multivariate)", child = rk.XML.row(shared_var_selector, rk.XML.col(fact_data)))
+  js_fact_calc <- 'var df = getValue("fact_data"); echo("Factoshiny::Factoshiny(" + df + ")\\n");'
+  js_fact_print <- 'echo("rk.header(\\"Factoshiny Launched\\")\\n");'
+
+  comp_fact <- rk.plugin.component("Factoshiny (PCA/CA/MCA)", xml=list(dialog=fact_dialog), js=list(require="Factoshiny", calculate=js_fact_calc, printout=js_fact_print), hierarchy=h_stat)
+
+  # --- 7. Shinystan ---
+  stan_obj <- rk.XML.varslot(id.name = "stan_obj", label = "Fitted Model Object (stanreg/brms/mcmc)", source = "shared_workspace_selector", required = TRUE)
+  stan_dialog <- rk.XML.dialog(label = "Shinystan Diagnostics", child = rk.XML.row(shared_var_selector, rk.XML.col(stan_obj)))
+  js_stan_calc <- 'var obj = getValue("stan_obj"); echo("shinystan::launch_shinystan(" + obj + ")\\n");'
+  js_stan_print <- 'echo("rk.header(\\"Shinystan Launched\\")\\n");'
+
+  comp_stan <- rk.plugin.component("Shinystan Diagnostics", xml=list(dialog=stan_dialog), js=list(require="shinystan", calculate=js_stan_calc, printout=js_stan_print), hierarchy=h_stat)
+
+
+  # =========================================================================================
+  # PSYCHOMETRICS GROUP
+  # Hierarchy: Shiny > Psychometrics
+  # =========================================================================================
+  h_psy <- list("Shiny", "Psychometrics")
+
+  # --- 8. ShinyItemAnalysis ---
+  sia_text <- rk.XML.text("Click Submit to launch the ShinyItemAnalysis suite.\n(Data can be uploaded inside the app or selected from built-in examples).")
+  sia_dialog <- rk.XML.dialog(label = "Shiny Item Analysis", child = rk.XML.col(sia_text))
+  js_sia_calc <- 'echo("ShinyItemAnalysis::startShinyItemAnalysis()\\n");'
+  js_sia_print <- 'echo("rk.header(\\"ShinyItemAnalysis Launched\\")\\n");'
+
+  comp_sia <- rk.plugin.component("Shiny Item Analysis", xml=list(dialog=sia_dialog), js=list(require="ShinyItemAnalysis", calculate=js_sia_calc, printout=js_sia_print), hierarchy=h_psy)
+
+
+  # =========================================================================================
+  # SKELETON BUILD
+  # =========================================================================================
+
+  rk.plugin.skeleton(
     about = package_about,
     path = ".",
-    # Define the main component here
-    xml = list(dialog = pivot_dialog),
-    js = list(require = "rpivotTable", calculate = js_pivot_calculate, printout = js_pivot_printout, results.header = FALSE),
-    rkh = list(help = pivot_help),
-    provides = c("dialog", "logic"),
-    # Pass the list of ADDITIONAL components.
-    components = list(ggplot_shiny_component, ggquickeda_component),
+
+    # Define Main Component
+    xml = list(dialog = piv_dialog),
+    js = list(require = "rpivotTable", calculate = js_piv_calc, printout = js_piv_print),
+
+    # Add ALL components
+    components = list(
+        comp_ggplot,  # Original (ggplotgui)
+        comp_esq,     # New (esquisse)
+        comp_exp,
+        comp_quick,
+        comp_fact,
+        comp_stan,
+        comp_sia
+    ),
+
+    # Define Menu Entry
     pluginmap = list(
         name = "Pivot Table",
-        hierarchy = list("Shiny"), # Hierarchy of the main component
-        po_id = "rpivotTable"
+        hierarchy = h_viz
     ),
-    create = c("pmap", "xml", "js", "desc", "rkh"),
+
+    create = c("pmap", "xml", "js", "desc"),
     overwrite = TRUE,
     load = TRUE,
     show = FALSE
-)
+  )
 
-message("Package files for '", package_about@name, "' generated successfully in '", plugin.dir, "'!")
+  message("Package 'rk.shiny.plugins' (v1.1.0) generated.")
+  message("MENU LOCATION: Top Level 'Shiny' Menu.")
+  message("Includes both 'ggplot GUI' and 'Esquisse'.")
 })

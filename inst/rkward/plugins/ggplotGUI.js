@@ -5,7 +5,7 @@
 
 function preprocess(is_preview){
 	// add requirements etc. here
-	echo("require(ggplotgui)\n");
+	echo("require(esquisse)\n");
 }
 
 function calculate(is_preview){
@@ -13,18 +13,13 @@ function calculate(is_preview){
 
 
 	// the R code to be evaluated
-
-    var data_frame = getValue("data_slot");
-    echo('result <- ggplot_shiny(dataset = ' + data_frame + ')\n');
-  
+var df = getValue("esq_data"); echo("esquisse::esquisser(" + df + ")\n");
 }
 
 function printout(is_preview){
 	// printout the results
-
-    echo('rk.header(\"Launching ggplot Interface\")\n');
-    echo('print(result)\n');
-  
+	new Header(i18n("ggplot GUI results")).print();
+echo("rk.header(\"ggplot GUI Launched\")\n");
 
 }
 

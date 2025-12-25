@@ -4,9 +4,6 @@
 		this code was generated using the rkwarddev package.
 	perhaps don't make changes here, but in the rkwarddev script instead!
 	-->
-	<title>
-		Pivot Table
-	</title>
 	<summary>
 	</summary>
 	<usage>
@@ -17,24 +14,7 @@
 		</section>
 	-->
 	<settings>
-		<caption id="tab_Confgrtn" />
-		<setting id="data_slot">
-		</setting>
-		<setting id="rows_slot">
-		</setting>
-		<setting id="cols_slot">
-		</setting>
-		<caption id="tab_Options" />
-		<setting id="drp_aggregator">
-		</setting>
-		<setting id="drp_renderer">
-		</setting>
-		<setting id="inp_width">
-		</setting>
-		<setting id="inp_height">
-		</setting>
-		<caption id="tab_Output" />
-		<setting id="save_pivot">
+		<setting id="esq_data">
 		</setting>
 	</settings>
 	<!--
