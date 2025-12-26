@@ -18,7 +18,7 @@ var df = getValue("esq_data"); echo("esquisse::esquisser(" + df + ")\n");
 
 function printout(is_preview){
 	// printout the results
-	new Header(i18n("Esquisse Plot Builder results")).print();
+	new Header(i18n("Esquisse results")).print();
 echo("rk.header(\"Esquisse Launched\")\n");
 
 }

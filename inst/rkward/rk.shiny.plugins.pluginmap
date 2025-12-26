@@ -20,7 +20,7 @@
 		name="rk.shiny.plugins"
 		shortinfo="A collection of interactive Shiny interfaces for RKWard."
 		longinfo="A collection of interactive Shiny interfaces for RKWard."
-		version="1.1.0"
+		version="1.1.1"
 		releasedate="2025-12-25"
 		url="https://github.com/AlfCano/rk.shiny.plugins"
 		license="GPL (&gt;= 3)"
@@ -44,6 +44,13 @@
 			label="ggplot GUI"
 			type="standard"
 			file="plugins/ggplotGUI.xml"
+		>
+		</component>
+		<component
+			id="cmp_PivotTableEsquisse"
+			label="Esquisse"
+			type="standard"
+			file="plugins/Esquisse.xml"
 		>
 		</component>
 		<component
@@ -100,6 +107,19 @@
 			>
 				<entry
 					component="cmp_PivotTableggplotGUI"
+				/>
+			</menu>
+		</menu>
+		<menu
+			id="men_Shiny"
+			label="Shiny"
+		>
+			<menu
+				id="men_Visualiztn"
+				label="Visualization"
+			>
+				<entry
+					component="cmp_PivotTableEsquisse"
 				/>
 			</menu>
 		</menu>

@@ -18,11 +18,13 @@
 			<connect governor="!edit!.state" client="!edit!.enabled" />
 		-->
 	</logic>
-	<dialog label="ggplot GUI (Esquisse)">
-		<row id="row_vrslctrODD">
-			<varselector id="shared_workspace_selector" label="Objects in workspace" />
-			<column id="clm_vrsltdsqdD">
-				<varslot id="esq_data" label="Dataset" source="shared_workspace_selector" classes="data.frame" required="true" />
+	<dialog label="Interactive Plot Builder (ggplot)">
+		<row id="row_clmndcOODD">
+			<column id="clm_vrslctrdgO">
+				<varselector id="ggplot_dataframe_source_id" label="Objects in workspace" />
+			</column>
+			<column id="clm_vrsltddtsD">
+				<varslot id="data_slot" label="Dataset (drag here)" source="ggplot_dataframe_source_id" classes="data.frame" required="true" />
 			</column>
 		</row>
 	</dialog>
