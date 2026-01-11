@@ -3,6 +3,8 @@
 ![Version](https://img.shields.io/badge/Version-1.1.1-orange)
 ![License](https://img.shields.io/badge/License-GPLv3-blue.svg)
 ![RKWard](https://img.shields.io/badge/Platform-RKWard-green)
+[![R Linter](https://github.com/AlfCano/rk.data.wrangling/actions/workflows/lintr.yml/badge.svg)](https://github.com/AlfCano/rk.data.wrangling/actions/workflows/lintr.yml)
+
 
 ## RKWard Shiny Plugins Package and Generator
 
