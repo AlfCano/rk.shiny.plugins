@@ -107,4 +107,3 @@ install.packages("rkwarddev")
 
 *   **Alfonso Cano** (alfonso.cano@correo.buap.mx)
 *   *Assisted by Gemini, a large language model from Google.*
-```
