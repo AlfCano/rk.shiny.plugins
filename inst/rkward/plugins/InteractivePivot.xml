@@ -4,8 +4,8 @@
 		this code was generated using the rkwarddev package.
 	perhaps don't make changes here, but in the rkwarddev script instead!
 	-->
-	<code file="ShinystanDiagnostics.js" />
-	<help file="ShinystanDiagnostics.rkh" />
+	<code file="InteractivePivot.js" />
+	<help file="InteractivePivot.rkh" />
 	<!--
 		<dependencies>
 		</dependencies>
@@ -18,11 +18,14 @@
 			<connect governor="!edit!.state" client="!edit!.enabled" />
 		-->
 	</logic>
-	<dialog label="Shinystan Diagnostics">
-		<row id="row_vrsOFMOFMO">
+	<dialog label="Interactive Pivot Table (Shiny)">
+		<row id="row_vODTIPTTIP">
 			<varselector id="shared_workspace_selector" label="Objects in workspace" />
-			<column id="clm_vrsltdsFMO">
-				<varslot id="stan_obj" label="Fitted Model Object" source="shared_workspace_selector" required="true" />
+			<column id="clm_vDTIPTTIPT">
+				<varslot id="sp_data" label="Dataset" source="shared_workspace_selector" classes="data.frame" required="true" />
+				<text id="txt_ThswlIPT">
+					This will launch the Interactive Pivot Table in your external web browser for maximum stability.
+				</text>
 			</column>
 		</row>
 	</dialog>

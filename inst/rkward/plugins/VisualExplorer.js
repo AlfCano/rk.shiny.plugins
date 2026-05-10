@@ -5,7 +5,7 @@
 
 function preprocess(is_preview){
 	// add requirements etc. here
-	echo("require(Factoshiny)\n");
+	echo("require(GWalkR)\n");
 }
 
 function calculate(is_preview){
@@ -13,13 +13,13 @@ function calculate(is_preview){
 
 
 	// the R code to be evaluated
-var df = getValue("fact_data"); echo("Factoshiny::Factoshiny(" + df + ")\n");
+var df = getValue("gw_data"); echo("gw_res <- GWalkR::gwalkr(" + df + ")\n");
 }
 
 function printout(is_preview){
 	// printout the results
-	new Header(i18n("Factoshiny (PCA/CA/MCA) results")).print();
-echo("rk.header(\"Factoshiny Launched\")\n");
+	new Header(i18n("Visual Explorer results")).print();
+echo("rk.header('GWalkR Visual Explorer'); print(gw_res)\n");
 
 }
 

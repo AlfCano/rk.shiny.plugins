@@ -5,7 +5,7 @@
 
 function preprocess(is_preview){
 	// add requirements etc. here
-	echo("require(ggplotgui)\n");
+	echo("require(Factoshiny)\n");
 }
 
 function calculate(is_preview){
@@ -13,13 +13,13 @@ function calculate(is_preview){
 
 
 	// the R code to be evaluated
-var df = getValue('data_slot'); echo('result <- ggplotgui::ggplot_shiny(dataset = ' + df + ')\n');
+var df = getValue("fact_data"); echo("Factoshiny::Factoshiny(" + df + ")\n");
 }
 
 function printout(is_preview){
 	// printout the results
-	new Header(i18n("ggplot GUI results")).print();
-echo('rk.header("Launching ggplot Interface")\n'); echo('print(result)\n');
+	new Header(i18n("Factoshiny results")).print();
+echo("rk.header(\"Factoshiny Launched\")\n");
 
 }
 

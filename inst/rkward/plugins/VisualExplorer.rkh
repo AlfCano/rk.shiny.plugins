@@ -14,7 +14,7 @@
 		</section>
 	-->
 	<settings>
-		<setting id="data_slot">
+		<setting id="gw_data">
 		</setting>
 	</settings>
 	<!--

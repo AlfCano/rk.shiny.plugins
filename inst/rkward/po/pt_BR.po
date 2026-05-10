@@ -1,0 +1,129 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: rk.shiny.plugins 1.2.0\n"
+"Report-Msgid-Bugs-To: alfonso.cano@correo.buap.mx\n"
+"POT-Creation-Date: 2026-05-09 11:18-0600\n"
+"PO-Revision-Date: 2026-05-09 11:18-0600\n"
+"Last-Translator: Alfonso Cano <alfonso.cano@correo.buap.mx>\n"
+"Language-Team: Brazilian Portuguese\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "A collection of interactive Shiny interfaces for RKWard."
+msgstr "Uma coleção de interfaces interativas do Shiny para RKWard. Inclui: Interactive Pivot Table, Professional Pivot Table, Visual Explorer, ggplot GUI, Esquisse Plot Builder, Automated EDA Report, Quick EDA, Factoshiny, Shinystan Diagnostics e Shiny Item Analysis."
+
+msgid "Shiny"
+msgstr "Shiny"
+
+msgid "Visualization"
+msgstr "Visualização"
+
+msgid "Exploration"
+msgstr "Exploração"
+
+msgid "Statistics"
+msgstr "Estatística"
+
+msgid "Psychometrics"
+msgstr "Psicometria"
+
+msgid "Interactive Pivot Table"
+msgstr "Tabela Dinâmica Interativa"
+
+msgid "Professional Pivot Table"
+msgstr "Tabela Dinâmica Profissional"
+
+msgid "Visual Explorer"
+msgstr "Explorador Visual"
+
+msgid "ggplot GUI"
+msgstr "Interface ggplot (GUI)"
+
+msgid "Esquisse Plot Builder"
+msgstr "Construtor de Gráficos Esquisse"
+
+msgid "Automated EDA Report"
+msgstr "Relatório EDA Automatizado"
+
+msgid "Quick EDA"
+msgstr "EDA Rápida"
+
+msgid "Factoshiny"
+msgstr "Factoshiny"
+
+msgid "Shinystan Diagnostics"
+msgstr "Diagnósticos Shinystan"
+
+msgid "Shiny Item Analysis"
+msgstr "Análise de Itens (Shiny Item Analysis)"
+
+msgid "Objects in workspace"
+msgstr "Objetos no espaço de trabalho"
+
+msgid "Dataset"
+msgstr "Conjunto de dados"
+
+msgid "Variables"
+msgstr "Variáveis"
+
+msgid "Aggregation"
+msgstr "Agregação"
+
+msgid "Function"
+msgstr "Função"
+
+msgid "Count"
+msgstr "Contagem (Count)"
+
+msgid "Sum"
+msgstr "Soma (Sum)"
+
+msgid "Mean"
+msgstr "Média (Mean)"
+
+msgid "Interactive Pivot Table (Shiny)"
+msgstr "Tabela Dinâmica Interativa (Shiny)"
+
+msgid "This will launch the Interactive Pivot Table in your external web browser for maximum stability."
+msgstr "Isso iniciará a Tabela Dinâmica Interativa no seu navegador web externo para máxima estabilidade."
+
+msgid "Professional Table (Static)"
+msgstr "Tabela Profissional (Estática)"
+
+msgid "Rows (Categorical)"
+msgstr "Linhas (Categóricas)"
+
+msgid "Columns (Categorical)"
+msgstr "Colunas (Categóricas)"
+
+msgid "Measure (Continuous/Numeric)"
+msgstr "Medida (Contínua/Numérica)"
+
+msgid "Weight variable (Optional)"
+msgstr "Variável de ponderação (Opcional)"
+
+msgid "Visual Explorer (GWalkR)"
+msgstr "Explorador Visual (GWalkR)"
+
+msgid "Interactive Plot Builder (ggplot)"
+msgstr "Construtor de Gráficos Interativo (ggplot)"
+
+msgid "Esquisse (Tableau-style)"
+msgstr "Esquisse (Estilo Tableau)"
+
+msgid "Automated Data Report"
+msgstr "Relatório de Dados Automatizado"
+
+msgid "Factoshiny (Multivariate)"
+msgstr "Factoshiny (Multivariada)"
+
+msgid "Data or PCA/CA Object"
+msgstr "Dados ou Objeto PCA/CA"
+
+msgid "Fitted Model Object"
+msgstr "Objeto de Modelo Ajustado"
+
+msgid "Click Submit to launch the ShinyItemAnalysis suite.\n(Data can be uploaded inside the app or selected from built-in examples)."
+msgstr "Clique em Enviar para iniciar a suíte ShinyItemAnalysis.\n(Os dados podem ser carregados dentro do aplicativo ou selecionados a partir de exemplos integrados)."

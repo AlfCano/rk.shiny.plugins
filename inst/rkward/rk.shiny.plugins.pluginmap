@@ -3,9 +3,9 @@
 >
 <document
 	base_prefix=""
-	namespace="PivotTable"
-	id="PivotTable_rkward"
-	po_id="PivotTable_rkward"
+	namespace="InteractivePivotTable"
+	id="InteractivePivotTable_rkward"
+	po_id="InteractivePivotTable_rkward"
 	priority="medium"
 >
 	<!--
@@ -20,8 +20,8 @@
 		name="rk.shiny.plugins"
 		shortinfo="A collection of interactive Shiny interfaces for RKWard."
 		longinfo="A collection of interactive Shiny interfaces for RKWard."
-		version="1.1.1"
-		releasedate="2025-12-25"
+		version="1.2.0"
+		releasedate="2026-05-09"
 		url="https://github.com/AlfCano/rk.shiny.plugins"
 		license="GPL (&gt;= 3)"
 	>
@@ -40,59 +40,73 @@
 	/>
 	<components>
 		<component
-			id="cmp_PivotTableggplotGUI"
+			id="cmp_IntrctvPvtTblPrfssnlPvtTb"
+			label="Professional Pivot Table"
+			type="standard"
+			file="plugins/ProfessionalPivotTable.xml"
+		>
+		</component>
+		<component
+			id="cmp_InteractivPvtTblVslExplrr"
+			label="Visual Explorer"
+			type="standard"
+			file="plugins/VisualExplorer.xml"
+		>
+		</component>
+		<component
+			id="cmp_InteractivePvtTblggpltGUI"
 			label="ggplot GUI"
 			type="standard"
 			file="plugins/ggplotGUI.xml"
 		>
 		</component>
 		<component
-			id="cmp_PivotTableEsquisse"
-			label="Esquisse"
+			id="cmp_IntrctvPvtTblEsqssPltBldr"
+			label="Esquisse Plot Builder"
 			type="standard"
-			file="plugins/Esquisse.xml"
+			file="plugins/EsquissePlotBuilder.xml"
 		>
 		</component>
 		<component
-			id="cmp_PivotTableAutomatdEDARprt"
+			id="cmp_IntrctvPvtTblAtmtdEDARprt"
 			label="Automated EDA Report"
 			type="standard"
 			file="plugins/AutomatedEDAReport.xml"
 		>
 		</component>
 		<component
-			id="cmp_PivotTableQuickEDA"
+			id="cmp_InteractivePivotTblQckEDA"
 			label="Quick EDA"
 			type="standard"
 			file="plugins/QuickEDA.xml"
 		>
 		</component>
 		<component
-			id="cmp_PivotTableFctshnyPCACAMCA"
-			label="Factoshiny (PCA/CA/MCA)"
+			id="cmp_InteractivePivtTblFctshny"
+			label="Factoshiny"
 			type="standard"
-			file="plugins/FactoshinyPCACAMCA.xml"
+			file="plugins/Factoshiny.xml"
 		>
 		</component>
 		<component
-			id="cmp_PivotTableShinystnDgnstcs"
+			id="cmp_IntrctvPvtTblShnystnDgnst"
 			label="Shinystan Diagnostics"
 			type="standard"
 			file="plugins/ShinystanDiagnostics.xml"
 		>
 		</component>
 		<component
-			id="cmp_PivotTableShinyItemAnlyss"
+			id="cmp_IntrctvPvtTblShnyItmAnlys"
 			label="Shiny Item Analysis"
 			type="standard"
 			file="plugins/ShinyItemAnalysis.xml"
 		>
 		</component>
 		<component
-			id="cmp_PivotTablePivotTable"
-			label="Pivot Table"
+			id="cmp_IntrctvPvtTblIntrctvPvtTb"
+			label="Interactive Pivot Table"
 			type="standard"
-			file="plugins/PivotTable.xml"
+			file="plugins/InteractivePivotTable.xml"
 		>
 		</component>
 	</components>
@@ -106,7 +120,7 @@
 				label="Visualization"
 			>
 				<entry
-					component="cmp_PivotTableggplotGUI"
+					component="cmp_IntrctvPvtTblPrfssnlPvtTb"
 				/>
 			</menu>
 		</menu>
@@ -119,7 +133,33 @@
 				label="Visualization"
 			>
 				<entry
-					component="cmp_PivotTableEsquisse"
+					component="cmp_InteractivPvtTblVslExplrr"
+				/>
+			</menu>
+		</menu>
+		<menu
+			id="men_Shiny"
+			label="Shiny"
+		>
+			<menu
+				id="men_Visualiztn"
+				label="Visualization"
+			>
+				<entry
+					component="cmp_InteractivePvtTblggpltGUI"
+				/>
+			</menu>
+		</menu>
+		<menu
+			id="men_Shiny"
+			label="Shiny"
+		>
+			<menu
+				id="men_Visualiztn"
+				label="Visualization"
+			>
+				<entry
+					component="cmp_IntrctvPvtTblEsqssPltBldr"
 				/>
 			</menu>
 		</menu>
@@ -132,7 +172,7 @@
 				label="Exploration"
 			>
 				<entry
-					component="cmp_PivotTableAutomatdEDARprt"
+					component="cmp_IntrctvPvtTblAtmtdEDARprt"
 				/>
 			</menu>
 		</menu>
@@ -145,7 +185,7 @@
 				label="Exploration"
 			>
 				<entry
-					component="cmp_PivotTableQuickEDA"
+					component="cmp_InteractivePivotTblQckEDA"
 				/>
 			</menu>
 		</menu>
@@ -158,7 +198,7 @@
 				label="Statistics"
 			>
 				<entry
-					component="cmp_PivotTableFctshnyPCACAMCA"
+					component="cmp_InteractivePivtTblFctshny"
 				/>
 			</menu>
 		</menu>
@@ -171,7 +211,7 @@
 				label="Statistics"
 			>
 				<entry
-					component="cmp_PivotTableShinystnDgnstcs"
+					component="cmp_IntrctvPvtTblShnystnDgnst"
 				/>
 			</menu>
 		</menu>
@@ -184,7 +224,7 @@
 				label="Psychometrics"
 			>
 				<entry
-					component="cmp_PivotTableShinyItemAnlyss"
+					component="cmp_IntrctvPvtTblShnyItmAnlys"
 				/>
 			</menu>
 		</menu>
@@ -197,7 +237,7 @@
 				label="Visualization"
 			>
 				<entry
-					component="cmp_PivotTablePivotTable"
+					component="cmp_IntrctvPvtTblIntrctvPvtTb"
 				/>
 			</menu>
 		</menu>

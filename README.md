@@ -1,6 +1,6 @@
 # rk.shiny.plugins
 
-![Version](https://img.shields.io/badge/Version-1.1.1-orange)
+![Version](https://img.shields.io/badge/Version-1.2.0-orange)
 ![License](https://img.shields.io/badge/License-GPLv3-blue.svg)
 ![RKWard](https://img.shields.io/badge/Platform-RKWard-green)
 [![R Linter](https://github.com/AlfCano/rk.data.wrangling/actions/workflows/lintr.yml/badge.svg)](https://github.com/AlfCano/rk.data.wrangling/actions/workflows/lintr.yml)
@@ -19,16 +19,19 @@ The resulting R package, `rk.shiny.plugins`, bundles several interactive data vi
 *   **Programmatic Generation**: The entire plugin structure, including all `.xml`, `.js`, and help files, is generated from a single R script. There is no need to manually edit XML or other plugin files.
 *   **Single, Unified Package**: All interactive plugins are bundled into one package for easy distribution and installation.
 *   **Categorized Menu Structure**: Plugins are organized logically under a top-level **"Shiny"** menu (Visualization, Exploration, Statistics, Psychometrics).
-*   **Extensible by Design**: The component-based architecture makes it straightforward to add new interactive plugins to the package by simply defining a new component in the script.
+*   **Modern & CRAN-Compliant**: Completely rebuilt to remove archived legacy dependencies (like `rpivotTable`), replacing them with modern, stable alternatives.
+*   **Multi-language Support (i18n)**: Fully translated into Spanish, French, German, and Brazilian Portuguese.
 
 ## Plugins Included
 
 This package currently generates the following plugins, accessible from the **Shiny** menu in RKWard:
 
 ### 📊 Visualization
-*   **Interactive Pivot Table**: Creates a powerful drag-and-drop pivot table with heatmaps and bar charts. (Depends on `rpivotTable`).
+*   **Interactive Pivot Table**: A powerful drag-and-drop pivot table. It launches automatically in your external web browser to ensure maximum stability and prevent websocket timeouts. (Depends on `shinypivottabler` and `shiny`).
+*   **Professional Pivot Table**: Generates highly customizable, publication-ready static HTML pivot tables inside the RKWard output. Includes native support for **Weighted Sums and Means**. (Depends on `pivottabler`).
+*   **Visual Explorer**: A modern, "Tableau-style" drag-and-drop data visualization interface perfect for fast visual analytics. (Depends on `GWalkR`).
 *   **ggplot GUI**: The classic "point-and-click" interface for building `ggplot2` graphics. (Depends on `ggplotgui`).
-*   **Esquisse Plot Builder**: A modern, "Tableau-style" drag-and-drop builder for ggplot2. (Depends on `esquisse`).
+*   **Esquisse Plot Builder**: A drag-and-drop builder for ggplot2 to easily create charts and export the underlying code. (Depends on `esquisse`).
 
 ### 🔍 Exploration
 *   **Automated EDA Report**: Automatically generates a complete HTML data profiling report (missing values, correlations, histograms) in one click. (Depends on `DataExplorer`).
@@ -49,11 +52,11 @@ Follow these steps to generate, compile, and install the complete plugin package
 
 Ensure you have R, RKWard, and the necessary R packages installed. You can install all required R packages by running this command in your R console:
 
-```{r echo=TRUE, eval=FALSE}
+```r
 install.packages(c(
-  "devtools", "rkwarddev", 
-  "rpivotTable", "ggplotgui", "esquisse", 
-  "ggquickeda", "DataExplorer", 
+  "devtools", "rkwarddev", "shiny",
+  "shinypivottabler", "pivottabler", "GWalkR", 
+  "ggplotgui", "esquisse", "ggquickeda", "DataExplorer", 
   "Factoshiny", "shinystan", "ShinyItemAnalysis"
 ))
 ```
@@ -63,9 +66,9 @@ install.packages(c(
 If you encounter errors mentioning "non-zero exit status", "namespace is already loaded", or requirements for compilation (compiling from source) when installing packages, it is likely because the R version bundled with RKWard is older than the current CRAN standard.
 
 **Workaround:**
-Until a new, more recent version of R (current bundled version is 4.3.3) is packaged into the RKWard executable, these issues will persist. To fix this:
+Until a new, more recent version of R (current bundled version is usually 4.3.3) is packaged into the RKWard executable, these issues will persist. To fix this:
 
-1.  Download and install the latest version of R (e.g., 4.5.2 or newer) from [CRAN](https://cloud.r-project.org/).
+1.  Download and install the latest version of R (e.g., 4.5.x or newer) from[CRAN](https://cloud.r-project.org/).
 2.  Open RKWard and go to the **Settings** (or Preferences) menu.
 3.  Run the **"Installation Checker"**.
 4.  Point RKWard to the newly installed R version.
@@ -82,16 +85,16 @@ You just need to add:
 
 Or, just run the next command in your R console:
 
-```{r echo=TRUE, eval=FALSE}
+```r
 local({
-## Prepare
-require(devtools)
-## Install
+  ## Prepare
+  require(devtools)
+  ## Install
   install_github(
     repo="AlfCano/rk.shiny.plugins"
   )
-## Print Result
-rk.header ("Results of installing from git")
+  ## Print Result
+  rk.header("Results of installing from git")
 })
 ```
 
@@ -99,7 +102,7 @@ rk.header ("Results of installing from git")
 
 To run the generator script yourself (if modifying the plugins), the `rkwarddev` package is needed.
 
-```{r echo=TRUE, eval=FALSE}
+```r
 install.packages("rkwarddev")
 ```
 

@@ -14,7 +14,19 @@
 		</section>
 	-->
 	<settings>
-		<setting id="data_slot">
+		<caption id="tab_Variabls" />
+		<setting id="pt_data">
+		</setting>
+		<setting id="pt_rows">
+		</setting>
+		<setting id="pt_cols">
+		</setting>
+		<caption id="tab_Aggregtn" />
+		<setting id="pt_meas">
+		</setting>
+		<setting id="pt_func">
+		</setting>
+		<setting id="pt_wght">
 		</setting>
 	</settings>
 	<!--

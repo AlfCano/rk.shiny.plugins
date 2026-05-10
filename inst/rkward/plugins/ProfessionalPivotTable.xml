@@ -1,0 +1,46 @@
+<!DOCTYPE rkplugin >
+<document>
+	<!--
+		this code was generated using the rkwarddev package.
+	perhaps don't make changes here, but in the rkwarddev script instead!
+	-->
+	<code file="ProfessionalPivotTable.js" />
+	<help file="ProfessionalPivotTable.rkh" />
+	<!--
+		<dependencies>
+		</dependencies>
+	-->
+	<logic>
+		<!--
+			<convert id="!edit!" sources="!edit!" mode="equals" standard="!edit!" />
+		-->
+		<!--
+			<connect governor="!edit!.state" client="!edit!.enabled" />
+		-->
+	</logic>
+	<dialog label="Professional Table (Static)">
+		<tabbook>
+			<tab label="Variables" id="tab_Variabls">
+				<row id="row_vODRCCCDRC">
+					<varselector id="shared_workspace_selector" label="Objects in workspace" />
+					<column id="clm_vrsltDRCCC">
+						<varslot id="pt_data" label="Dataset" source="shared_workspace_selector" classes="data.frame" required="true" />
+						<varslot id="pt_rows" label="Rows (Categorical)" source="shared_workspace_selector" required="true" multi="true" />
+						<varslot id="pt_cols" label="Columns (Categorical)" source="shared_workspace_selector" multi="true" />
+					</column>
+				</row>
+			</tab>
+			<tab label="Aggregation" id="tab_Aggregtn">
+				<column id="clm_vMCNFCSMWO">
+					<varslot id="pt_meas" label="Measure (Continuous/Numeric)" source="shared_workspace_selector" />
+					<dropdown id="pt_func" label="Function">
+						<option label="Count" value="n" checked="true" />
+						<option label="Sum" value="sum" />
+						<option label="Mean" value="mean" />
+					</dropdown>
+					<varslot id="pt_wght" label="Weight variable (Optional)" source="shared_workspace_selector" />
+				</column>
+			</tab>
+		</tabbook>
+	</dialog>
+</document>
